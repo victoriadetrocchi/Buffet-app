@@ -1,0 +1,35 @@
+<div class="home-container">
+  
+  <header class="hero-section">
+    <h1>¡Bienvenido a Buffet I2T! 🥗</h1>
+    <p>Tu sistema de gestión de pedidos favorito.</p>
+  </header>
+
+  <section class="status-card">
+    <h3>Estado del Sistema</h3>
+
+    @if (cargando) {
+      <div class="loading">
+        <span class="spinner">⏳</span> Conectando con el servidor...
+      </div>
+    }
+
+    @if (!cargando && mensaje) {
+      <div class="success">
+        <span class="icon">✅</span>
+        <p>{{ mensaje.message }}</p>
+      </div>
+    }
+
+    @if (error) {
+      <div class="error">
+        <span class="icon">❌</span>
+        <p>No se pudo conectar con el Backend.</p>
+        <small>Asegurate de que la terminal de Node.js esté corriendo.</small>
+        <br>
+        <button (click)="cargarDatosPrueba()">Reintentar</button>
+      </div>
+    }
+  </section>
+
+</div>
