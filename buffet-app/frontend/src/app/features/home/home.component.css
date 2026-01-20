@@ -1,0 +1,41 @@
+.home-container { max-width: 800px; margin: 40px auto; text-align: center; }
+.dias-grid { display: flex; gap: 15px; justify-content: center; margin: 30px 0; flex-wrap: wrap;}
+
+.dia-card {
+  border: 2px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 100px;
+  transition: all 0.2s;
+  background: white;
+}
+
+/* Ocultamos el checkbox feo */
+.dia-card input { display: none; }
+
+.dia-card.selected {
+  border-color: #27ae60;
+  background-color: #eafaf1;
+  color: #27ae60;
+  font-weight: bold;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.2);
+}
+
+.btn-guardar {
+  background: #34495e; color: white; border: none; padding: 12px 30px;
+  font-size: 1.1rem; border-radius: 5px; cursor: pointer;
+}
+.btn-guardar:hover { background: #2c3e50; }
+
+/* Estilos Admin */
+.admin-links { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+.admin-card {
+  text-decoration: none; color: #333; border: 1px solid #ddd;
+  padding: 30px; border-radius: 10px; width: 200px; display: flex;
+  flex-direction: column; align-items: center; gap: 10px;
+  transition: 0.3s;
+}
+.admin-card:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.admin-card .icon { font-size: 3rem; }

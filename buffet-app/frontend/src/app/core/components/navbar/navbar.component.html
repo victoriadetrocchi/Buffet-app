@@ -1,0 +1,27 @@
+<nav class="navbar">
+  <div class="brand">
+    <span>Buffet I2T 🍔</span>
+  </div>
+
+  <div class="nav-links" *ngIf="usuario">
+    <a routerLink="/home" routerLinkActive="active">Inicio</a>
+
+    <ng-container *ngIf="usuario.rol === 'EMPLEADO'">
+      <a routerLink="/menu" routerLinkActive="active">Hacer Pedido</a>
+      <a routerLink="/mis-pedidos" routerLinkActive="active">Historial</a>
+    </ng-container>
+
+    <ng-container *ngIf="usuario.rol === 'ADMINISTRADOR'">
+      <a routerLink="/admin/pedidos" routerLinkActive="active">Cocina (Pedidos)</a>
+      <a routerLink="/admin/platos" routerLinkActive="active">Gestión Platos</a>
+    </ng-container>
+  </div>
+
+  <div class="user-info" *ngIf="usuario">
+    <span class="user-name">{{ usuario.nombre }}</span>
+    <span class="role-badge" [class.admin]="usuario.rol === 'ADMINISTRADOR'">
+      {{ usuario.rol }}
+    </span>
+    <button (click)="logout()" class="btn-logout">Salir</button>
+  </div>
+</nav>

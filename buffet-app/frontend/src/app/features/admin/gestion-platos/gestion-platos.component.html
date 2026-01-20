@@ -1,0 +1,42 @@
+<div class="gestion-container">
+  <h2>🥗 Gestión de Menú</h2>
+
+  <div class="card-form">
+    <h3>Agregar Nuevo Plato</h3>
+    <div class="form-grid">
+      <input type="text" placeholder="Nombre del plato" [(ngModel)]="nuevoPlato.nombre">
+      <input type="text" placeholder="Descripción" [(ngModel)]="nuevoPlato.descripcion">
+      <select [(ngModel)]="nuevoPlato.categoria">
+        <option value="Principal">Principal</option>
+        <option value="Vegetariano">Vegetariano</option>
+        <option value="Postre">Postre</option>
+        <option value="Bebida">Bebida</option>
+      </select>
+      <input type="number" placeholder="Precio" [(ngModel)]="nuevoPlato.precio">
+      <button (click)="guardarPlato()">➕ Agregar</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <table class="tabla-platos">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Precio</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of platos">
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.categoria }}</td>
+        <td>${{ p.precio }}</td>
+        <td>
+          <button class="btn-borrar" (click)="eliminarPlato(p.id)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

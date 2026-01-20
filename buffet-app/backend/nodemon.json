@@ -1,0 +1,9 @@
+{
+    "verbose": true,
+    "ignore": [
+    "*.json",
+    "node_modules",
+    "*.log",
+    "public/*"
+    ]
+}
