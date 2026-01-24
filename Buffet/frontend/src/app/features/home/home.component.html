@@ -1,0 +1,62 @@
+<div class="home-container" *ngIf="usuario">
+  
+  <h1>Hola, {{ usuario.nombre }} 👋</h1>
+  <p class="subtitle">
+    {{ usuario.rol === 'ADMINISTRADOR' ? 'Panel de Administración' : 'Gestioná tu semana en el buffet' }}
+  </p>
+
+  <div class="panel-asistencia" *ngIf="usuario.rol === 'EMPLEADO'">
+    <h3>📅 ¿Qué días vas a venir a comer?</h3>
+    <p class="info">Seleccioná los días para que la cocina calcule las porciones.</p>
+
+    <div class="dias-grid">
+      <label class="dia-card" [class.selected]="asistencia.lunes">
+        <input type="checkbox" [(ngModel)]="asistencia.lunes">
+        <span>LUNES</span>
+      </label>
+      <label class="dia-card" [class.selected]="asistencia.martes">
+        <input type="checkbox" [(ngModel)]="asistencia.martes">
+        <span>MARTES</span>
+      </label>
+      <label class="dia-card" [class.selected]="asistencia.miercoles">
+        <input type="checkbox" [(ngModel)]="asistencia.miercoles">
+        <span>MIÉRCOLES</span>
+      </label>
+      <label class="dia-card" [class.selected]="asistencia.jueves">
+        <input type="checkbox" [(ngModel)]="asistencia.jueves">
+        <span>JUEVES</span>
+      </label>
+      <label class="dia-card" [class.selected]="asistencia.viernes">
+        <input type="checkbox" [(ngModel)]="asistencia.viernes">
+        <span>VIERNES</span>
+      </label>
+    </div>
+
+    <button class="btn-guardar" (click)="guardarAsistencia()">Guardar</button>
+  </div>
+
+<div class="panel-admin" *ngIf="usuario.rol === 'ADMINISTRADOR'">
+    <h3>¿Qué desea hacer?</h3>
+    
+    <div class="admin-links">
+      <a routerLink="/admin/pedidos" class="admin-card">
+        <span class="icon">👨‍🍳</span>
+        <span>Ver Pedidos del Día</span>
+        <small>Controlar y despachar comida</small>
+      </a>
+
+      <a routerLink="/admin/platos" class="admin-card">
+        <span class="icon">🥗</span>
+        <span>Gestionar Platos</span>
+        <small>Cargar stock y precios</small>
+      </a>
+
+      <a routerLink="/admin/planificador" class="admin-card">
+        <span class="icon">📅</span>
+        <span>Planificar Semana</span>
+        <small>Asignar el menú de cada día</small>
+      </a>
+    </div>
+  </div>
+
+</div>

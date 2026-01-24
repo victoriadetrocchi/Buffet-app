@@ -1,0 +1,22 @@
+/* src/styles.css */
+
+html, body {
+  height: 100%;           /* Ocupa toda la altura */
+  margin: 0;              /* Saca los bordes blancos del navegador */
+  padding: 0;
+}
+
+body {
+  /* 👇 ELEGÍ EL QUE MÁS TE GUSTE 👇 */
+  
+  /* Opción 1: Gris muy suave (Estilo Dashboard Moderno - RECOMENDADO) */
+  background-color: #f0f2f5; 
+
+  /* Opción 2: Azulado muy clarito (Combina con tu menú) */
+  /* background-color: #ecf0f1; */
+
+  /* Opción 3: Beige cálido */
+  /* background-color: #fdfbf7; */
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía linda */
+}

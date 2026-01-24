@@ -1,0 +1,76 @@
+<div class="menu-layout">
+  
+  <div class="menu-container">
+    <h2>🍽️ Menú Semanal</h2>
+
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div> Cargando platos...
+    </div>
+
+    <div *ngIf="!loading && diasOrdenados.length === 0" class="sin-datos">
+      <p>No hay menú planificado para esta semana. 😴</p>
+    </div>
+
+    <div *ngFor="let dia of diasOrdenados" class="seccion-dia">
+      
+      <h3 class="titulo-dia">{{ dia }}</h3>
+
+      <div class="grid-menu">
+        <div class="card-plato" *ngFor="let plato of menuPorDia[dia]">
+          
+          <div class="foto-plato">
+            <img 
+              [src]="plato.imagen ? 'assets/' + plato.imagen : 'assets/plato-default.png'" 
+              (error)="manejarErrorImagen($event)" 
+              alt="{{ plato.nombre }}">
+          </div>
+          
+          <div class="info-plato">
+            <div class="encabezado-card">
+              <h3>{{ plato.nombre }}</h3>
+              <span class="badge-cat">{{ plato.categoria }}</span>
+            </div>
+            
+            <p class="desc">{{ plato.descripcion }}</p>
+
+            <div class="datos-venta">
+              <span class="precio">${{ plato.precio }}</span>
+              <span class="stock-info" [class.sin-stock]="plato.stock === 0" [class.poco-stock]="plato.stock < 10 && plato.stock > 0">
+                {{ plato.stock > 0 ? '(Quedan: ' + plato.stock + ')' : '¡AGOTADO!' }}
+              </span>
+            </div>
+            
+            <button 
+              class="btn-agregar" 
+              [disabled]="plato.stock === 0"
+              [class.btn-disabled]="plato.stock === 0"
+              (click)="agregarAlCarrito(plato)">
+              {{ plato.stock > 0 ? 'Agregar 🛒' : 'Sin Stock' }}
+            </button>
+          </div>
+
+        </div> </div> </div> </div>
+
+  <div class="carrito-panel" *ngIf="carrito.length > 0">
+    <h3>🛒 Tu Pedido</h3>
+    
+    <div class="lista-items">
+      <div class="item-carrito" *ngFor="let item of carrito; let i = index">
+        <div class="desc">
+          <b>{{ item.nombre }}</b>
+          <div class="detalles-item">
+            <span>Cant: {{ item.cantidad }}</span>
+            <span>${{ item.precio * item.cantidad }}</span>
+          </div>
+        </div>
+        <button class="btn-borrar" (click)="eliminarDelCarrito(i)" title="Quitar">🗑️</button>
+      </div>
+    </div>
+
+    <div class="resumen-total">
+      <p>Total a Pagar: <span class="monto-total">${{ total }}</span></p>
+      <button class="btn-confirmar" (click)="confirmarPedido()">✅ CONFIRMAR PEDIDO</button>
+    </div>
+  </div>
+
+</div>

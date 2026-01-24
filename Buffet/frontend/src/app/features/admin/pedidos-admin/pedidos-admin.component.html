@@ -1,0 +1,38 @@
+<div class="admin-container">
+  <h2>Panel de Cocina</h2>
+
+  <table class="tabla-admin">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Empleado</th>
+        <th>Fecha</th>
+        <th>Total</th>
+        <th>Estado Actual</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pedidos">
+        <td>#{{ p.id }}</td>
+        <td>{{ p.nombre }} {{ p.apellido }}</td>
+        <td>{{ p.fecha | date:'short' }}</td>
+        <td>${{ p.total }}</td>
+        <td>
+            <span class="badge" 
+              [class.pendiente]="p.id_estado == 1"
+              [class.listo]="p.id_estado == 3">
+              {{ p.id_estado == 1 ? 'PENDIENTE' : (p.id_estado == 3 ? 'ENTREGADO' : 'PROCESO') }}
+            </span>
+        </td>
+        <td>
+          <select (change)="cambiarEstado(p, $any($event.target).value)" [value]="p.id_estado">
+            <option *ngFor="let e of estados" [value]="e.id">
+              {{ e.nombre }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
