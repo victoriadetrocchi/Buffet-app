@@ -1,0 +1,30 @@
+.planificador-layout { padding: 20px; max-width: 1200px; margin: 0 auto; }
+.subtitulo { color: #666; margin-bottom: 20px; }
+
+/* PANEL AGREGAR */
+.panel-agregar { background-color: #e8f6f3; padding: 20px; border-radius: 8px; border: 1px solid #d1f2eb; }
+.controles { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+.campo { display: flex; flex-direction: column; }
+.campo label { font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; }
+select { padding: 10px; min-width: 200px; border: 1px solid #ccc; border-radius: 4px; }
+.btn-asignar { padding: 10px 25px; background-color: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-asignar:hover { background-color: #219150; }
+
+/* GRILLA SEMANAL */
+.semana-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 30px; }
+
+.columna-dia { background: #fdfefe; border: 1px solid #bdc3c7; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+.encabezado-dia { background-color: #34495e; color: white; text-align: center; padding: 10px; font-weight: bold; letter-spacing: 1px; }
+.contenido-dia { padding: 10px; flex-grow: 1; background-color: #f4f6f7; min-height: 200px; }
+
+/* TARJETAS DENTRO DE LOS DÍAS */
+.tarjeta-menu { 
+  background: white; border-left: 5px solid #3498db; 
+  padding: 8px; margin-bottom: 8px; border-radius: 4px; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center;
+}
+.info { display: flex; flex-direction: column; font-size: 0.9rem; }
+.info small { color: #7f8c8d; }
+.btn-borrar { background: none; border: none; color: #c0392b; font-weight: bold; cursor: pointer; font-size: 1.2rem; }
+.btn-borrar:hover { transform: scale(1.2); }
+.vacio { text-align: center; color: #bdc3c7; font-style: italic; margin-top: 20px; }

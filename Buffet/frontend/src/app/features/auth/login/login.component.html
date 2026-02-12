@@ -1,0 +1,50 @@
+<div class="login-container">
+  <div class="login-card">
+    
+    <div class="brand-header">
+      <h1 class="logo">I2T <span class="highlight">Buffet</span></h1>
+      <p class="subtitle">> Iniciar Sesión_</p>
+    </div>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      
+      <div class="form-group">
+        <label for="email">EMAIL</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          [(ngModel)]="credenciales.email" 
+          required 
+          placeholder="usuario@i2t.com"
+          autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="password">CONTRASEÑA</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          [(ngModel)]="credenciales.password" 
+          required
+          placeholder="••••••">
+      </div>
+
+      @if (errorMsg) {
+        <div class="error-banner">
+          ⚠️ {{ errorMsg }}
+        </div>
+      }
+
+      <button type="submit" [disabled]="loading || !loginForm.form.valid">
+        @if (loading) {
+          <span class="spinner">⏳</span> Procesando...
+        } @else {
+          INGRESAR
+        }
+      </button>
+
+    </form>
+  </div>
+</div>

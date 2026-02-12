@@ -1,0 +1,33 @@
+<div class="historial-container">
+  <h2>Mis Pedidos</h2>
+
+  <div *ngIf="loading">Cargando historial...</div>
+
+  <table *ngIf="!loading && pedidos.length > 0" class="tabla-pedidos">
+    <thead>
+      <tr>
+        <th>N° Pedido</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pedidos">
+        <td>#{{ p.id }}</td>
+        <td>{{ p.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <span class="etiqueta" 
+            [class.pendiente]="p.id_estado === 1"
+            [class.listo]="p.id_estado === 2"
+            [class.entregado]="p.id_estado === 3">
+            {{ p.nombre_estado || 'PENDIENTE' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && pedidos.length === 0" class="vacio">
+    <p>Todavía no hiciste ningún pedido. ¡Andá al menú!</p>
+  </div>
+</div>

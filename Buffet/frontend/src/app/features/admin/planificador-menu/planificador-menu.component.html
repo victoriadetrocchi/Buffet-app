@@ -1,0 +1,56 @@
+<div class="planificador-layout">
+  
+  <h2>📅 Planificador Semanal</h2>
+  <p class="subtitulo">Decidí qué van a comer los empleados cada día.</p>
+
+  <div class="panel-agregar">
+    <h3>Asignar Plato al Menú</h3>
+    
+    <div class="controles">
+      <div class="campo">
+        <label>Día de la semana:</label>
+        <select [(ngModel)]="nuevoIdDia">
+          <option *ngFor="let dia of dias" [value]="dia.id">{{ dia.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label>Plato a servir:</label>
+        <select [(ngModel)]="nuevoIdPlato">
+          <option [value]="0">-- Seleccioná un plato --</option>
+          <option *ngFor="let p of platosDisponibles" [value]="p.id">
+            {{ p.nombre }} (Stock: {{ p.stock }})
+          </option>
+        </select>
+      </div>
+
+      <button class="btn-asignar" (click)="asignarPlato()">Asignar</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="semana-grid">
+    
+    <div class="columna-dia" *ngFor="let dia of dias">
+      <div class="encabezado-dia">{{ dia.nombre }}</div>
+      
+      <div class="contenido-dia">
+        
+        <div class="tarjeta-menu" *ngFor="let item of obtenerPlatosDelDia(dia.id)">
+          <div class="info">
+            <strong>{{ item.nombre_plato }}</strong>
+            <small>{{ item.categoria }} - ${{ item.precio }}</small>
+          </div>
+          <button class="btn-borrar" (click)="eliminarDelDia(item.id_asignacion)" title="Quitar">✖</button>
+        </div>
+
+        <div *ngIf="obtenerPlatosDelDia(dia.id).length === 0" class="vacio">
+          Sin menú
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

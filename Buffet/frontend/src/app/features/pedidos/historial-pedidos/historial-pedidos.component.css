@@ -1,0 +1,7 @@
+.historial-container { padding: 20px; max-width: 800px; margin: 0 auto; }
+.tabla-pedidos { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.tabla-pedidos th, .tabla-pedidos td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+.etiqueta { padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; color: white; }
+.pendiente { background-color: #f1c40f; } /* Amarillo */
+.listo { background-color: #2ecc71; } /* Verde */
+.entregado { background-color: #95a5a6; } 

@@ -1,0 +1,55 @@
+<div class="gestion-container">
+  <h2>📦 Gestión de Stock y Precios</h2>
+
+  <div class="panel-crear">
+    <h3>Crear Nuevo Plato</h3>
+    <div class="form-grid">
+      <input type="text" placeholder="Nombre del plato" [(ngModel)]="nuevoPlato.nombre">
+      <input type="text" placeholder="Descripción" [(ngModel)]="nuevoPlato.descripcion">
+      <select [(ngModel)]="nuevoPlato.categoria">
+        <option value="Principal">Principal</option>
+        <option value="Minuta">Minuta</option>
+        <option value="Postre">Postre</option>
+        <option value="Bebida">Bebida</option>
+      </select>
+      <input type="number" placeholder="Precio" [(ngModel)]="nuevoPlato.precio">
+      <input type="number" placeholder="Stock Inicial" [(ngModel)]="nuevoPlato.stock">
+      <button (click)="crearPlato()">Agregar</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <table class="tabla-stock">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Precio ($)</th>
+        <th>Stock (Unidades)</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of platos" [class.sin-stock]="p.stock === 0">
+        
+        <td>{{ p.nombre }}</td>
+        <td><span class="badge">{{ p.categoria }}</span></td>
+
+        <td>
+          <input type="number" [(ngModel)]="p.precio" class="input-edit">
+        </td>
+
+        <td>
+          <input type="number" [(ngModel)]="p.stock" class="input-edit" [class.danger]="p.stock < 10">
+        </td>
+
+        <td>
+          <button class="btn-guardar" (click)="guardarCambios(p)" title="Guardar Cambios">💾</button>
+          <button class="btn-borrar" (click)="eliminarPlato(p.id)" title="Eliminar">🗑️</button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
