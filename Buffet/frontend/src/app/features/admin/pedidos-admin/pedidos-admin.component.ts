@@ -31,15 +31,25 @@ export class PedidosAdminComponent implements OnInit {
       });
   }
 
-  cambiarEstado(pedido: any, nuevoEstadoId: string) {
-    const idEstado = parseInt(nuevoEstadoId);
-    this.apiService.put(`pedidos/${pedido.id}/estado`, { id_estado: idEstado }).subscribe({
-      next: () => {
-        alert(`Pedido #${pedido.id} actualizado!`);
-        pedido.id_estado = idEstado;
-        this.cd.detectChanges(); 
-      },
-      error: () => alert('Error al cambiar estado')
-    });
-  }
+cambiarEstado(pedido: any, nuevoEstadoId: string) {
+  const idEstado = parseInt(nuevoEstadoId);
+  
+  this.apiService.put(`pedidos/${pedido.id}/estado`, { id_estado: idEstado }).subscribe({
+    next: () => {
+      pedido.id_estado = idEstado;
+
+      const estadoEncontrado = this.estados.find(e => e.id === idEstado);
+      if (estadoEncontrado) {
+        pedido.nombre_estado = estadoEncontrado.nombre;
+      }
+
+      console.log(`✅ Pedido #${pedido.id} actualizado a ${pedido.nombre_estado}`);
+      this.cd.detectChanges(); 
+    },
+    error: (err) => {
+      alert('Error al cambiar estado');
+      console.error(err);
+    }
+  });
+}
 }

@@ -18,17 +18,20 @@
         <td>{{ p.nombre }} {{ p.apellido }}</td>
         <td>{{ p.fecha | date:'short' }}</td>
         <td>${{ p.total }}</td>
+        
         <td>
-            <span class="badge" 
-              [class.pendiente]="p.id_estado == 1"
-              [class.listo]="p.id_estado == 3">
-              {{ p.id_estado == 1 ? 'PENDIENTE' : (p.id_estado == 3 ? 'ENTREGADO' : 'PROCESO') }}
-            </span>
+          <span class="etiqueta" [ngClass]="'estado-' + p.id_estado">
+            {{ p.nombre_estado || 'PENDIENTE' }}
+          </span>
         </td>
+
         <td>
-          <select (change)="cambiarEstado(p, $any($event.target).value)" [value]="p.id_estado">
-            <option *ngFor="let e of estados" [value]="e.id">
-              {{ e.nombre }}
+          <select 
+            [(ngModel)]="p.id_estado" 
+            (change)="cambiarEstado(p, $any($event.target).value)"
+            class="selector-admin">
+            <option *ngFor="let est of estados" [value]="est.id">
+              {{ est.nombre }}
             </option>
           </select>
         </td>

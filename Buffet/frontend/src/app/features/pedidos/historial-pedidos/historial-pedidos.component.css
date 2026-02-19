@@ -1,7 +1,71 @@
-.historial-container { padding: 20px; max-width: 800px; margin: 0 auto; }
-.tabla-pedidos { width: 100%; border-collapse: collapse; margin-top: 20px; }
-.tabla-pedidos th, .tabla-pedidos td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
-.etiqueta { padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; color: white; }
-.pendiente { background-color: #f1c40f; } /* Amarillo */
-.listo { background-color: #2ecc71; } /* Verde */
-.entregado { background-color: #95a5a6; } 
+/* Contenedor principal para dar espacio */
+.admin-container, .historial-container {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilo de la Tabla */
+.tabla-admin, .tabla-pedidos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tabla-admin th, .tabla-pedidos th {
+  background-color: #2c3e50;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.tabla-admin td, .tabla-pedidos td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+/* --- LAS ETIQUETAS DE ESTADO  --- */
+.etiqueta {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  min-width: 120px;
+  text-transform: uppercase;
+}
+
+/* Amarillo para Pendiente */
+.estado-1 { 
+  background-color: #ffc107 !important; 
+  color: #212529 !important; 
+} 
+
+/* Celeste/Azul para En Preparación */
+.estado-2 { 
+  background-color: #17a2b8 !important; 
+  color: white !important; 
+} 
+
+/* Verde para Entregado */
+.estado-3 { 
+  background-color: #28a745 !important; 
+  color: white !important; 
+} 
+
+/* Estilo para el Selector del Admin */
+.selector-admin {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #f8f9fa;
+}
+
+.selector-admin:focus {
+  outline: none;
+  border-color: #17a2b8;
+}
