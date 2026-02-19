@@ -43,7 +43,6 @@ const crear = async (req, res) => {
                 [idPedido, item.id_item_menu, item.cantidad, precio]
             );
 
-            // 🔥 ACÁ ESTÁ LA MAGIA: RESTAR STOCK 🔥
             // Actualizamos la tabla item_menu restando la cantidad
             await db.query(
                 'UPDATE item_menu SET stock = stock - ? WHERE id = ?',
@@ -65,19 +64,27 @@ const crear = async (req, res) => {
 };
 
 // 2. Función para LISTAR pedidos de un usuario (Para "Mis Pedidos")
+
 const listarPorUsuario = async (req, res) => {
-    try {
-        const { idUsuario } = req.params;
-        // Consulta simplificada para evitar errores
-        const [pedidos] = await db.query(
-            'SELECT * FROM pedido WHERE id_usuario = ? ORDER BY fecha DESC', 
-            [idUsuario]
-        );
-        res.json(pedidos);
-    } catch (error) {
-        console.error("Error SQL:", error);
-        res.status(500).json({ error: error.message });
-    }
+  try {
+    const { idUsuario } = req.params;
+    const sql = `
+      SELECT p.*, 
+             CASE 
+               WHEN p.id_estado = 1 THEN 'PENDIENTE'
+               WHEN p.id_estado = 2 THEN 'EN PREPARACIÓN'
+               WHEN p.id_estado = 3 THEN 'ENTREGADO'
+               ELSE 'DESCONOCIDO'
+             END as nombre_estado
+      FROM pedido p
+      WHERE p.id_usuario = ?
+      ORDER BY p.fecha DESC
+    `;
+    const [pedidos] = await db.query(sql, [idUsuario]);
+    res.json(pedidos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 // 3. Función para CAMBIAR ESTADO (Para el Admin más adelante)
@@ -108,7 +115,6 @@ const cambiarEstado = async (req, res) => {
 
 const listarTodos = async (req, res) => {
     try {
-        // 👇 VERSIÓN ARREGLADA: Sin JOIN a tablas que no existen.
         // Usamos CASE para ponerle nombre al estado directamente en la consulta.
         const sql = `
             SELECT p.id, p.fecha, p.id_estado, p.total, 

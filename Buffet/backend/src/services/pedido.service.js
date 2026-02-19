@@ -26,7 +26,6 @@ class PedidoService {
             const pedidoId = pedidoResult.insertId;
 
             // 4. Procesamos cada item (Validar Stock -> Descontar -> Agregar al pedido)
-            // Usamos un for...of para poder usar await dentro del loop y detenernos si algo falla
             const itemsParaInsertar = [];
 
             for (const item of detalles) {

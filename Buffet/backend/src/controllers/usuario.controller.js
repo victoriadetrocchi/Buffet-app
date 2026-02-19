@@ -20,8 +20,6 @@ const login = async (req, res) => {
             return res.status(401).json({ message: 'Contraseña incorrecta' });
         }
 
-        // ✅ YA NO BUSCAMOS EN TABLA ADMINISTRADOR
-        // El rol viene directo de la tabla usuario
         console.log("✅ Login OK. Rol:", usuario.rol);
 
         res.json({
@@ -78,7 +76,7 @@ const obtenerDatos = async (req, res) => {
     }
 };
 
-// 3. ACTUALIZAR ASISTENCIA (Igual que antes)
+// 3. ACTUALIZAR ASISTENCIA 
 const actualizarAsistencia = async (req, res) => {
     try {
         const { id } = req.params;

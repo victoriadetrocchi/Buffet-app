@@ -46,5 +46,4 @@ const actualizar = async (req, res) => {
     }
 };
 
-// ¡Agregala a la lista de exportaciones!
 module.exports = { listar, crear, eliminar, actualizar };
