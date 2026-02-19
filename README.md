@@ -68,10 +68,10 @@ Decoupled client-server architecture:
 ## 📸 Screenshots
 
 ### Admin Dashboard
-![admin](./buffet1.png)
+![user](./buffet4.png)
 
 ### User Panel
-![user](./buffet4.png)
+![admin](./buffet1.png)
 
 ---
 
